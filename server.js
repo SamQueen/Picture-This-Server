@@ -14,11 +14,11 @@ require('dotenv').config()
 const PORT = 5000;
 
 // middleware
-/*app.use(cors({
+app.use(cors({
     origin: ["https://picture-this-project.herokuapp.com/" + process.env.PORT],
     methods: ["POST", "GET"],
     credentials: true
-}));*/
+}));
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
