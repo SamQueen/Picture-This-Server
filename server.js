@@ -33,6 +33,8 @@ app.use(session({
     }
 }));
 
+app.options('*', cors());
+
 // resources
 const pool = require('./resources/Database');
 const s3 = require('./resources/S3Bucket');
