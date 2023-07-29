@@ -17,7 +17,7 @@ router.post('/login', (req,res) => {
         // check for an error
         if (error) {
             clientResponse ='error';
-            res.json({login: false, username: ''});
+            res.json({error: error});
             return;
         }
 
