@@ -15,7 +15,7 @@ const PORT = 5000;
 
 // middleware
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://picture-this-project.herokuapp.com"],
     methods: ["POST", "GET"],
     credentials: true
 }));
