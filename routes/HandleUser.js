@@ -6,6 +6,9 @@ const generateURL = require('../resources/BucketUrl');
 const MD5 = require('crypto-js/md5');
 
 
+router.get('/s', (req, res) => {
+    res.sendStatus(200);
+});
 
 // check login credentials before logging in
 router.post('/login', (req,res) => {
