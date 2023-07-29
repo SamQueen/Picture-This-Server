@@ -11,6 +11,8 @@ var async = require('async');
 const { S3Client, AbortMultipartUploadCommand, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 require('dotenv').config()
 
+const PORT = 5000;
+
 // middleware
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -274,6 +276,6 @@ app.get('/recommendedPosts', (req, res) => {
 });
 
 // listen on port 5000
-app.listen(5000, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log("servers started on port 5000");
 });
