@@ -30,7 +30,7 @@ router.post('/login', (req,res) => {
 
         var result = results[0];
         // set session username
-        req.session.username = result.username;
+        // req.session.username = result.username;
 
         // get the hased password
         const hashedPassword = MD5(password).toString();
@@ -47,7 +47,8 @@ router.post('/login', (req,res) => {
             return;
         }
 
-        res.json({login: true, username: req.session.username});
+        //res.json({login: true, username: req.session.username});
+        res.json({login: true, username: result.username});
     });
     
 });
