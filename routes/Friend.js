@@ -11,7 +11,7 @@ router.get('/getAllFriends', (req,res) => {
                 'FROM users '+
                 'WHERE user_id IN ( '+
                 'SELECT friend_id FROM friends '+
-                'WHERE user_id = 100034); ';
+                'WHERE user_id = ?); ';
 
     pool.query( query, [user.user_id], (error, results) => {
         if (error) {
@@ -29,28 +29,6 @@ router.get('/getAllFriends', (req,res) => {
 
             res.send(results);
         })();
-    });
-});
-
-// check if user is a friend
-router.get('/areFriends', (req,res) => {
-    var friend_id = req.query.userId;
-    var query = 'SELECT friended FROM friends WHERE user_id=? AND friend_id=?;';
-    var areFriends = false;
-
-    pool.query( query, [user.user_id, friend_id], (error, results) => {
-        if (error) {
-            console.log("Error getting friends " + error.code);
-        }
-                
-        var normalResults = results.map((mysqlObj, index) => {
-            return Object.assign({}, mysqlObj)
-        });
-
-        if (normalResults.length > 0)
-            areFriends = true;
-
-        res.send(areFriends);
     });
 });
 
@@ -136,8 +114,8 @@ router.get('/getPotentialFriends', (req,res) => {
     const query = 'SELECT first_name, last_name, user_id, profile_photo FROM users ' +
         'WHERE user_id NOT IN ( ' +
         'SELECT friend_id FROM friends ' +
-        'WHERE user_id = 100034) ' +
-        'AND user_id != 100034;'
+        'WHERE user_id = ?) ' +
+        'AND user_id != ?;'
 
     pool.query(query, [user.user_id, user.user_id], (error, results) => {
         if (error) {
